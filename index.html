@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Aula 1 VueJS</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ titulo }}</h1>
+      <ul>
+        <li v-for="usuario in usuarios">{{ usuario.nome | truncate('10') }}</li>
+      </ul>
+      <form class="" action="http://google.com" method="post">
+          <button type="submit" class="btn-btn-primary" @click.prevent.stop="enviar()">Enviar</button>
+      </form>
+
+    </div>
+
+    <script  src="https://unpkg.com/vue" ></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          titulo: "Aula 1 VueJS!",
+          usuarios: [
+            {nome:'Carlos Silva'},
+            {nome: 'Camila Silva'},
+            {nome: 'Maria Joao'}
+          ]
+        },
+
+        filters: {
+          toUpperCase(str, param1, param2){
+            console.log('param1', param1);
+            console.log('param2', param2);
+            return str.toUpperCase();
+          },
+          truncate(str, length){
+            var output = str;
+            if (output.length > length) {
+              output = str.substring(0, length) + '...';
+            }
+            return output;
+          }
+        },
+
+
+
+        methods:{
+          enviar(){
+            alert('Enviado');
+          },
+        }
+      });
+    </script>
+  </body>
+</html>
